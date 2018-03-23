@@ -21,12 +21,14 @@ namespace StackExchange.Redis
         public virtual TimeSpan Ping(CommandFlags flags = CommandFlags.None)
         {
             var msg = GetTimerMessage(flags);
+            msg.SetInternalCall();
             return ExecuteSync(msg, ResultProcessor.ResponseTimer);
         }
 
         public virtual Task<TimeSpan> PingAsync(CommandFlags flags = CommandFlags.None)
         {
             var msg = GetTimerMessage(flags);
+            msg.SetInternalCall();
             return ExecuteAsync(msg, ResultProcessor.ResponseTimer);
         }
 
